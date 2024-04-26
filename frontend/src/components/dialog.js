@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { ADDUSER } from '../graphhql/Mutation/useMutationAddUser';
+import { UPDATEUSER } from '../graphhql/Mutation/useMutationUpdateUser';
+
 import { useMutation } from "@apollo/client";
 import Button from '@mui/material/Button';
 
@@ -30,6 +32,21 @@ function SideDialog({ selectedRow, setOpen, open }) {
     },
   });
 
+  const [updateUser] = useMutation(UPDATEUSER, {
+    awaitRefetchQueries: true,
+    refetchQueries: ["getUsers"],
+    onCompleted: (data) => {
+      if (data) {
+        handleClose()
+        if (data?.updateUser?.success) {
+          alert("User update successful")
+        } else {
+          alert(`issue ${data?.updateUser?.message}`);
+        }
+      }
+    },
+  });
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setUserData((prevData) => ({ ...prevData, [name]: value }));
@@ -37,11 +54,22 @@ function SideDialog({ selectedRow, setOpen, open }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    addUser({
-      variables: {
-        user: userData
-      }
-    });
+    if (selectedRow) {
+      updateUser({
+        variables: {
+          user: {
+            ...userData,
+            _id: selectedRow?._id
+          }
+        }
+      });
+    } else {
+      addUser({
+        variables: {
+          user: userData
+        }
+      });
+    }
   };
 
   const handleClose = () => {
@@ -54,6 +82,15 @@ function SideDialog({ selectedRow, setOpen, open }) {
       hiredate: '',
     })
   }
+
+  useEffect(() => {
+    if (selectedRow)
+      setUserData({
+        ...selectedRow,
+        hiredate: selectedRow?.hireDate?.split('T')?.[0]
+      })
+
+  }, [selectedRow])
 
   return (
     <Dialog

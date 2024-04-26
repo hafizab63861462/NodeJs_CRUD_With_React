@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Button from '@mui/material/Button';
-import Dialog from './dialog'
+import SideDialog from './dialog'
 
 function ToolbarAction() {
   const [open, setOpen] = useState(false);
@@ -13,7 +13,7 @@ function ToolbarAction() {
     }}>
       <Button variant="contained" onClick={() => { setOpen(true) }}>Add User</Button>
       <p style={{ marginLeft: '10px' }}>If want to update anu user click on row</p>
-      <Dialog open={open} setOpen={setOpen} />
+      <SideDialog open={open} setOpen={setOpen} />
     </div >
   )
 }

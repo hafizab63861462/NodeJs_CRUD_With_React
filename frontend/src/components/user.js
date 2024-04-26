@@ -7,9 +7,11 @@ import {
 } from 'material-react-table';
 import columns from './tablejson'
 import ToolbarAction from './toolbar'
+import RowAction from './rowaction';
 
 function User() {
   const [allUser, setAllUser] = useState([])
+
   const [getALlUser, { data, loading }] = useLazyQuery(GET_USERS, {
     fetchPolicy: 'no-cache',
   });
@@ -37,7 +39,10 @@ function User() {
     renderTopToolbarCustomActions: () => (
       <ToolbarAction />
     ),
-
+    enableRowActions: true,
+    renderRowActions: ({ row }) => (
+      < RowAction selectedRow={row?.original} />
+    )
   });
 
   return (

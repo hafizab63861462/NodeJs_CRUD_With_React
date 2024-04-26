@@ -20,7 +20,7 @@ const columns = [
     size: 150,
   },
   {
-    accessorKey: 'hireDtae',
+    accessorKey: 'hireDate',
     header: 'Hire Dtae',
     size: 150,
   },

@@ -6,7 +6,7 @@ const userSchema = new Schema({
   job: String,
   department: String,
   salary: Number,
-  hireDtae: { type: Date, default: Date.now },
+  hireDate: { type: Date, default: Date.now },
   isDeleted: { type: Boolean, default: false },
 })
 
