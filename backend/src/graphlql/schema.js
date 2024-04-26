@@ -8,7 +8,7 @@ type Query{
 type Mutation {
   addUser(user: JSON): JSON
   updateUser(user: JSON): JSON
-  deleteUser(userId: ID): JSON
+  deleteUser(userId: String): JSON
 }
 `
 module.exports = typeDefs 

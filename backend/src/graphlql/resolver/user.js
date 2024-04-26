@@ -59,11 +59,19 @@ module.exports = (MongoDb) => ({
           { new: true }
         )
 
-        return {
-          success: true,
-          res,
-          message: "user updated successfully"
+        if (res) {
+          return {
+            success: true,
+            res,
+            message: "user updated successfully"
+          }
+        } else {
+          return {
+            success: false,
+            message: "User not found"
+          };
         }
+
       } catch (error) {
         return {
           success: false,
