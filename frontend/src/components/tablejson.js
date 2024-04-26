@@ -10,7 +10,7 @@ const columns = [
     size: 150,
   },
   {
-    accessorKey: 'departmet',
+    accessorKey: 'department',
     header: 'Departmet',
     size: 200,
   },

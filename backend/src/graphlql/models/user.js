@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   name: String,
   job: String,
-  departmet: String,
+  department: String,
   salary: Number,
   hireDtae: { type: Date, default: Date.now },
   isDeleted: { type: Boolean, default: false },
