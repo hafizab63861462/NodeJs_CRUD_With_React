@@ -23,6 +23,9 @@ const columns = [
     accessorKey: 'hireDate',
     header: 'Hire Dtae',
     size: 150,
+    Cell: ({ row }) => {
+      return <>{row?.original?.hireDate?.split('T')?.[0]}</>
+    }
   },
 ]
 export default columns
