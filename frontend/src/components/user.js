@@ -6,6 +6,7 @@ import {
   useMaterialReactTable,
 } from 'material-react-table';
 import columns from './tablejson'
+import ToolbarAction from './toolbar'
 
 function User() {
   const [allUser, setAllUser] = useState([])
@@ -27,11 +28,16 @@ function User() {
   const table = useMaterialReactTable({
     columns,
     data: allUser,
+    enableRowSelection: true,
     state: {
       isLoading: loading,
       showProgressBars: loading,
       isSaving: loading,
     },
+    renderTopToolbarCustomActions: () => (
+      <ToolbarAction />
+    ),
+
   });
 
   return (
