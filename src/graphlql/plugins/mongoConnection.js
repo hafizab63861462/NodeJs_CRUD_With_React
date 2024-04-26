@@ -23,10 +23,8 @@ function connect(connectString) {
   }
 }
 
-const MongoConnection = connect("mongodb+srv://abdullahhafiz300:MongoDb12345@local-data-base.dviasq1.mongodb.net/?retryWrites=true&w=majority&appName=local-data-base");
+const MongoConnection = connect(process.env.MONGODB_CONNECTION_STRING);
 const MongoDb = require("../models/index.js")(MongoConnection);
-
-// console.log('process.env.MONGODB_CONNECTION_STRING', process.env.MONGODB_CONNECTION_STRING)
 
 module.exports = {
   connect,

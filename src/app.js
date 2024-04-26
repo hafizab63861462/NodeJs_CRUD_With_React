@@ -1,4 +1,5 @@
 var express = require("express")
+require('dotenv').config();
 const { ApolloServer } = require('@apollo/server')
 const typeDefs = require('./graphlql/schema')
 const cors = require('cors');
