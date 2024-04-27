@@ -25,7 +25,11 @@ const User = new EntitySchema({
     hireDate: {
       type: 'timestamp',
       default: () => 'CURRENT_TIMESTAMP'
-    }
+    },
+    isDeleted: {
+      type: Boolean,
+      default: false
+    },
   }
 });
 

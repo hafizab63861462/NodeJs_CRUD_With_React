@@ -23,13 +23,13 @@ function User() {
 
   useEffect(() => {
     if (data) {
-      setAllUser(data.getUsers.res)
+      setAllUser(data.getUsers.res || data.getUsers.users)
     }
   }, [data])
 
   const table = useMaterialReactTable({
     columns,
-    data: allUser,
+    data: allUser || [],
     enableRowSelection: true,
     state: {
       isLoading: loading,
