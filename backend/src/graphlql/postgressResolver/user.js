@@ -3,7 +3,7 @@ module.exports = (userRepository) => ({
   Query: {
     getUsers: async () => {
       try {
-        const users = await userRepository.find();
+        const users = await userRepository.find({ where: { isDeleted: false } });
 
         return {
           success: true,

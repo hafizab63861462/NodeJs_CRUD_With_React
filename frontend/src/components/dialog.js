@@ -15,7 +15,7 @@ function SideDialog({ selectedRow, setOpen, open }) {
     job: '',
     department: '',
     salary: '',
-    hiredate: '',
+    hireDate: '',
   });
   const [addUser] = useMutation(ADDUSER, {
     awaitRefetchQueries: true,
@@ -79,7 +79,7 @@ function SideDialog({ selectedRow, setOpen, open }) {
       job: '',
       department: '',
       salary: '',
-      hiredate: '',
+      hireDate: '',
     })
   }
 
@@ -87,7 +87,7 @@ function SideDialog({ selectedRow, setOpen, open }) {
     if (selectedRow)
       setUserData({
         ...selectedRow,
-        hiredate: selectedRow?.hireDate?.split('T')?.[0]
+        hireDate: selectedRow?.hireDate?.split('T')?.[0]
       })
 
   }, [selectedRow])
@@ -153,8 +153,8 @@ function SideDialog({ selectedRow, setOpen, open }) {
           <input
             type="date"
             id="hiredate"
-            name="hiredate"
-            value={userData.hiredate}
+            name="hireDate"
+            value={userData.hireDate}
             onChange={handleChange}
             required
           />
