@@ -23,6 +23,30 @@ module.exports = (MongoDb) => ({
           message: "user not get"
         }
       }
+    },
+
+    getUser: async (_, { userId }) => {
+      try {
+        const res = await MongoDb.User.aggregate([
+          {
+            $match: {
+              _id: ObjectId(userId)
+            }
+          }
+        ])
+
+        return {
+          success: true,
+          res,
+          message: "all users"
+        }
+      } catch (error) {
+        return {
+          success: false,
+          error,
+          message: "user not get"
+        }
+      }
     }
   },
   Mutation: {

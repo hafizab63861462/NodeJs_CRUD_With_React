@@ -3,6 +3,7 @@ scalar JSON
 
 type Query{
   getUsers: JSON
+  getUser(userId: ID): JSON
 }
 
 type Mutation {
