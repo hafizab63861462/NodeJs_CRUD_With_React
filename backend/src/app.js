@@ -6,16 +6,19 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const MongoDb = require("./graphlql/plugins/mongoConnection").MongoDb;
 const { expressMiddleware } = require('@apollo/server/express4');
-
+const AppDataSource = require("./graphlql/plugins/postgressConnection").AppDataSource
 let { QueryResolvers, MutationResolvers } = require("./graphlql/resolver")(MongoDb);
+let { PostgressQueryResolvers, PostgressMutationResolvers } = require("./graphlql/postgressResolver")(AppDataSource);
 
 
 const resolvers = {
   Mutation: {
     ...MutationResolvers,
+    ...PostgressMutationResolvers,
   },
   Query: {
     ...QueryResolvers,
+    ...PostgressQueryResolvers,
   },
 };
 
